@@ -8,7 +8,7 @@ namespace Corvus.Cli.Internal
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using Corvus.Extensions;
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
     /// <summary>
     /// A binding for an option to a command.

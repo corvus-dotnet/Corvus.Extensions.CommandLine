@@ -5,9 +5,10 @@
 namespace Corvus.Cli
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Corvus.Cli.Internal;
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
     /// <summary>
     ///     The command.
@@ -20,7 +21,7 @@ namespace Corvus.Cli
     ///     <code>
     /// <![CDATA[
     ///     using Corvus.Cli;
-    ///     using Microsoft.Extensions.CommandLineUtils;
+    ///     using McMaster.Extensions.CommandLineUtils;
     ///
     ///     class Program
     ///     {
@@ -99,8 +100,9 @@ namespace Corvus.Cli
         /// <summary>
         /// Execute the command.
         /// </summary>
+        /// <param name="token">The cancellation token.</param>
         /// <returns>A task which, when complete, provides the result.</returns>
-        public abstract Task<int> ExecuteAsync();
+        public abstract Task<int> ExecuteAsync(CancellationToken token);
 
         /// <summary>
         /// Adds the command to the application.
@@ -111,10 +113,10 @@ namespace Corvus.Cli
         {
             return application.Command(this.Name, command =>
             {
-                command.OnExecute(() =>
+                command.OnExecuteAsync(ct =>
                 {
                     this.bindings.ForEach(b => b.ApplyBinding());
-                    return this.ExecuteAsync();
+                    return this.ExecuteAsync(ct);
                 });
                 this.AddOptions(command);
             });

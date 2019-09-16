@@ -1,7 +1,7 @@
 ﻿namespace Corvus.Extensions.CommandLine.Example
 {
     using Corvus.Cli;
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
     class Program
     {

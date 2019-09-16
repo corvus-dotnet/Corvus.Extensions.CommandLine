@@ -4,7 +4,7 @@
 
 namespace Corvus.Cli
 {
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
     /// <summary>
     /// Extension methods for the <see cref="CommandLineApplication"/>.

@@ -10,7 +10,7 @@ namespace Corvus.Cli
     using System.Linq.Expressions;
     using Corvus.Cli.Internal;
     using Corvus.Extensions;
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
     /// <summary>
     /// Extension methods for the <see cref="Command{T}"/> implementations.

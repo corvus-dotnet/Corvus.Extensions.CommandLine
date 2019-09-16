@@ -3,9 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Corvus.Cli;
-    using Microsoft.Extensions.CommandLineUtils;
+    using McMaster.Extensions.CommandLineUtils;
 
 #pragma warning disable CS0649, IDE0044
 
@@ -44,7 +45,7 @@
                 () => this.greet);
         }
 
-        public override Task<int> ExecuteAsync()
+        public override Task<int> ExecuteAsync(CancellationToken token)
         {
             if (this.greet)
             {
