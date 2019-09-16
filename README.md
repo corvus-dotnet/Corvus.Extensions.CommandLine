@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions.CommandLine/master/LICENSE)
 [![IMM](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions.CommandLine/total?cache=false)](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions.CommandLine/total?cache=false)
 
-This provides a pluggable command pattern over the [![McMaster.Extensions.CommandLineUtils](https://natemcmaster.github.io/CommandLineUtils/)] library.
+This provides a pluggable command pattern over the [McMaster.Extensions.CommandLineUtils](https://natemcmaster.github.io/CommandLineUtils/) library.
 
 It is built for netstandard2.0.
 
