@@ -4,7 +4,9 @@
 
 namespace Corvus.Cli
 {
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading;
     using System.Threading.Tasks;
     using Corvus.Cli.Internal;
@@ -77,15 +79,22 @@ namespace Corvus.Cli
         /// <param name="name">
         /// The name of the command (this is what will be invoked from the command line).
         /// </param>
-        protected Command(string name)
+        /// <param name="description">The descriptive text.</param>
+        protected Command(string name, string description)
         {
             this.Name = name;
+            this.Description = description;
         }
 
         /// <summary>
         /// Gets the name of the command.
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the description of the command.
+        /// </summary>
+        public string Description { get; }
 
         /// <summary>
         /// Add options and parameters for the command to the given syntax.
@@ -113,9 +122,27 @@ namespace Corvus.Cli
         {
             return application.Command(this.Name, command =>
             {
+                command.HelpOption();
+                command.Description = this.Description;
+                command.OnValidate(vc =>
+                {
+                    try
+                    {
+                        this.bindings.ForEach(b =>
+                        {
+                            b.ApplyBinding();
+                        });
+
+                        return null;
+                    }
+                    catch (Exception e)
+                    {
+                        return new ValidationResult(e.Message);
+                    }
+                });
+
                 command.OnExecuteAsync(ct =>
                 {
-                    this.bindings.ForEach(b => b.ApplyBinding());
                     return this.ExecuteAsync(ct);
                 });
                 this.AddOptions(command);

@@ -20,6 +20,11 @@ namespace Corvus.Cli
         public static CommandLineApplication AddCommand<TCommand>(this CommandLineApplication application)
             where TCommand : Command<TCommand>, new()
         {
+            if (application.OptionHelp is null)
+            {
+                application.HelpOption();
+            }
+
             var command = new TCommand();
             return command.Add(application);
         }

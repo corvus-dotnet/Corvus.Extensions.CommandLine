@@ -16,7 +16,7 @@
         private List<int> numbersToOmit;
         private bool greet;
 
-        public TestCommand() : base("test")
+        public TestCommand() : base("test", "Perform a test count.")
         {
         }
 
@@ -35,7 +35,7 @@
             this.AddMultipleOption(
                 application,
                 "-o|--omit <value>",
-                "Omit the number from the count",
+                "Omit the number from the count (allows multiple)",
                 () => this.numbersToOmit);
 
             this.AddBooleanOption(
